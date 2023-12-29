@@ -22,8 +22,8 @@ class PGVector(BaseANN):
             raise RuntimeError(f"unknown metric {metric}")
 
     def fit(self, X):
-        subprocess.run("service postgresql start", shell=True, check=True, stdout=sys.stdout, stderr=sys.stderr)
-        conn = psycopg.connect(user="ann", password="ann", dbname="ann", autocommit=True)
+        #subprocess.run("service postgresql start", shell=True, check=True, stdout=sys.stdout, stderr=sys.stderr)
+        conn = psycopg.connect(host="", user="postgres", password="12", dbname="ann")
         pgvector.psycopg.register_vector(conn)
         cur = conn.cursor()
         cur.execute("DROP TABLE IF EXISTS items")
